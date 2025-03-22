@@ -85,18 +85,18 @@ fn check_build(build: String) -> Bool{
 }
 
 
-fn check_split_part_is_valide(semver: String) -> Bool {
-  let splited = split_semver(semver)
-  if splited is None { return false }
+fn check_seg_is_valide(semver: String) -> Bool {
+  let segmented = split_semver(semver)
+  if segmented is None { return false }
   
-  let split_unwarp = splited.unwrap()
-  if split_unwarp.core_version.is_empty() { return false }
-  if not(check_core_version(split_unwarp.core_version.unwrap())) { return false }
-  if not(split_unwarp.pre_release.is_empty()) { 
-    if not(check_pre_release(split_unwarp.pre_release.unwrap())) { return false }
+  let segmented_unwarp = segmented.unwrap()
+  if segmented_unwarp.core_version.is_empty() { return false }
+  if not(check_core_version(segmented_unwarp.core_version.unwrap())) { return false }
+  if not(segmented_unwarp.pre_release.is_empty()) { 
+    if not(check_pre_release(segmented_unwarp.pre_release.unwrap())) { return false }
   }
-  if not(split_unwarp.build.is_empty()) { 
-    if not(check_build(split_unwarp.build.unwrap())) { return false }
+  if not(segmented_unwarp.build.is_empty()) { 
+    if not(check_build(segmented_unwarp.build.unwrap())) { return false }
   }
 
   return true
@@ -111,7 +111,7 @@ fn validate_semver(semver: String) -> Bool{
   guard check_symbols_in_limit(semver) else { return false }
   guard check_dots_not_consecutive(semver) else { return false }
   guard check_neg_pos_symbols_is_order(semver) else { return false }
-  guard check_split_part_is_valide(semver) else { return false }
+  guard check_seg_is_valide(semver) else { return false }
   
 
   return true
