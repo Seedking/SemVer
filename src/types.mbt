@@ -1,5 +1,5 @@
 
-pub struct SegmentedSemVer {
+pub struct SplitSemVer {
   mut core_version : String?
   mut pre_release : String?
   mut build : String?

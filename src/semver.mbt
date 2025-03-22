@@ -1,6 +1,6 @@
 
 
-pub fn split(semver: String) -> SegmentedSemVer? {
+pub fn split(semver: String) -> SplitSemVer? {
   return split_semver(semver)
 }
 

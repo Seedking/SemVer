@@ -22,11 +22,11 @@ fn is_valid_char(char: Char) -> Bool {
 }
 
 
-fn split_semver(semver: String) -> SegmentedSemVer? {
+fn split_semver(semver: String) -> SplitSemVer? {
   let pos_index = semver.index_of(ksymbol_pos.to_string());  
   let neg_index = semver.index_of(ksymbol_neg.to_string());  
 
-  let container : SegmentedSemVer = SegmentedSemVer::{ core_version:None, pre_release: None, build: None}
+  let container : SplitSemVer = SplitSemVer::{ core_version:None, pre_release: None, build: None}
   
   if neg_index != -1 {  
       container.core_version = Some(semver.substring(start = 0, end = neg_index))
