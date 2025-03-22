@@ -1,4 +1,6 @@
 
+let kmagic_failed_num = -1
+
 let ksymbol_dot = '.'
 
 let ksymbol_pos = '+'
@@ -28,16 +30,16 @@ fn split_semver(semver: String) -> SplitSemVer? {
 
   let container : SplitSemVer = SplitSemVer::{ core_version:None, pre_release: None, build: None}
   
-  if neg_index != -1 {  
+  if neg_index != kmagic_failed_num {  
       container.core_version = Some(semver.substring(start = 0, end = neg_index))
-  } else if pos_index != -1 {
+  } else if pos_index != kmagic_failed_num {
       container.core_version = Some(semver.substring(start = 0, end = pos_index))
   } else {
       container.core_version = Some(semver)
   }
 
-  if neg_index != -1 {  
-      let pre_end = if pos_index != -1 { pos_index } else { semver.length() };  
+  if neg_index != kmagic_failed_num {  
+      let pre_end = if pos_index != kmagic_failed_num { pos_index } else { semver.length() };  
       let str_pre_release = semver.substring(start = neg_index + 1, end = pre_end);  
       if str_pre_release.length() > 0 {  
           container.pre_release = Some(str_pre_release)
@@ -46,7 +48,7 @@ fn split_semver(semver: String) -> SplitSemVer? {
       }  
   }  
 
-  if pos_index != -1 {  
+  if pos_index != kmagic_failed_num {  
       let str_build = semver.substring(start = pos_index + 1);  
       if str_build.length() > 0 {  
           container.build = Some(str_build);  

@@ -6,9 +6,9 @@ pub struct SplitSemVer {
 }
 
 pub struct T {
-  major : UInt16
-  minor : UInt16
-  patch : UInt16
+  major : Int
+  minor : Int
+  patch : Int
   pre_release : Array[String]
   build : Array[String]
 }

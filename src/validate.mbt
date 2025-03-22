@@ -34,7 +34,7 @@ fn check_neg_pos_symbols_is_order(semver: String) -> Bool{
   let pos_index: Int = semver.index_of(ksymbol_pos.to_string())
   let neg_index: Int = semver.index_of(ksymbol_neg.to_string())
 
-  if pos_index != -1 && neg_index != -1 && pos_index < neg_index { return false }
+  if pos_index != kmagic_failed_num && neg_index != kmagic_failed_num && pos_index < neg_index { return false }
 
   return true;
 }
