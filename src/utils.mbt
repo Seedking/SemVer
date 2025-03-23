@@ -1,6 +1,12 @@
 
 let kmagic_failed_num = -1
 
+let kmagic_eq = 0
+
+let kmagic_smaller = -1
+
+let kmagic_greater = 1
+
 let ksymbol_dot = '.'
 
 let ksymbol_pos = '+'
