@@ -1,3 +1,3 @@
 
 
-type! SemVerParseError
+pub type! SemVerParseError

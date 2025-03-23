@@ -10,8 +10,8 @@ pub fn validate(semver : String) -> Bool {
 }
 
 
-pub fn parse(semver : String) -> T? {
-  return parse_semver(semver)
+pub fn parse(semver : String) -> T!SemVerParseError {
+  return parse_semver!(semver)
 }
 
 
