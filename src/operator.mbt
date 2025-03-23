@@ -1,5 +1,3 @@
-
-
 fn compare_release_part(part_a: String, part_b: String) -> Int {
   let a_is_num = part_a.fold(init = true, fn(acc, c) -> Bool { return acc && is_valid_digit(c) })
   let b_is_num = part_b.fold(init = true, fn(acc, c) -> Bool { return acc && is_valid_digit(c) })

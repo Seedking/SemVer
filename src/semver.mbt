@@ -1,5 +1,3 @@
-
-
 pub fn split(semver: String) -> SplitSemVer? {
   return split_semver(semver)
 }
@@ -54,6 +52,14 @@ pub fn T::is_pre_release(self : T) -> Bool {
   return if self.pre_release.length() > 0 { true } else { false }
 }
 
+
+pub impl Eq for T with op_equal(self: T, other:T) -> Bool {
+  guard self.major == other.major else { return false }
+  guard self.minor == other.minor else { return false }
+  guard self.patch == other.patch else { return false }
+  guard compare_pre_release(self.pre_release, other.pre_release) == kmagic_eq else { return false }
+  return true
+}
 
 pub impl Compare for T with compare(self : T, other : T) -> Int {
   let compare_major = self.major.compare(other.major)

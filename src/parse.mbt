@@ -1,6 +1,3 @@
-
-
-
 fn parse_semver(semver: String) -> T!SemVerParseError{
   guard validate_semver(semver) else { raise SemVerParseError }
   let split_parts = split_semver(semver).unwrap()

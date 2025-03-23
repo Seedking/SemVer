@@ -1,5 +1,6 @@
-
 //#region right
+let right_simple = "1.0.0"
+
 let right_full = "1.0.0-alpha114+build1919"
 
 let right_full_repeat = "1.0.0-alpha114.beta514+build1919.test810"
@@ -55,4 +56,33 @@ test "validate_wrong" {
   assert_false!(@SemVer.validate(wrong_repeat_dot_release))
   assert_false!(@SemVer.validate(wrong_repeat_dot_build))
   assert_false!(@SemVer.validate(wrong_excess_core_ver))
+}
+
+test "compare" {
+  let v1_0_0 = @SemVer.T::{major:1, minor:0, patch:0, pre_release: [], build: []}
+  let v2_0_0 = @SemVer.T::{major:2, minor:0, patch:0, pre_release: [], build: []}
+  let v2_1_0 = @SemVer.T::{major:2, minor:1, patch:0, pre_release: [], build: []}
+  let v2_1_1 = @SemVer.T::{major:2, minor:1, patch:1, pre_release: [], build: []}
+  let v1_0_0_release = @SemVer.T::{major:1, minor:0, patch:0, pre_release: ["alpha114"], build: []}
+  let v1_0_0_build = @SemVer.T::{major:1, minor:0, patch:0, pre_release: [], build: ["build1919"]}
+
+  assert_false!(v1_0_0 == v2_0_0)
+  assert_false!(v2_0_0 == v2_1_0)
+  assert_false!(v2_1_0 == v2_1_1)
+  assert_false!(v1_0_0 == v1_0_0_release)
+  assert_true!(v1_0_0 < v2_0_0)
+  assert_true!(v2_0_0 < v2_1_0)
+  assert_true!(v2_1_0 < v2_1_1)
+  assert_true!(v1_0_0_release < v1_0_0)
+  assert_true!(v1_0_0 == v1_0_0_build)
+}
+
+test "parse" {
+  let v_simple = @SemVer.T::{major:1, minor:0, patch:0, pre_release: [], build: []}
+  let v_full = @SemVer.T::{major:1, minor:0, patch:0, pre_release: ["alpha114"], build: ["build1919"]}
+  let v_repeat = @SemVer.T::{major:1, minor:0, patch:0, pre_release: ["alpha114","beta514"], build: ["build1919","test810"]}
+
+  assert_true!(v_simple == @SemVer.parse?(right_simple).unwrap())
+  assert_true!(v_full == @SemVer.parse?(right_full).unwrap())
+  assert_true!(v_repeat == @SemVer.parse?(right_full_repeat).unwrap())
 }

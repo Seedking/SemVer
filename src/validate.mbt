@@ -1,4 +1,3 @@
-
 fn check_chars_is_valid(semver: String) -> Bool{
   for char in semver {
     if is_valid_char(char) != true { return false }

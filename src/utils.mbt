@@ -1,4 +1,3 @@
-
 let kmagic_failed_num = -1
 
 let kmagic_eq = 0
