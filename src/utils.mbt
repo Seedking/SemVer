@@ -76,3 +76,12 @@ fn split_semver(semver : String) -> SplitSemVer? {
   }
   return Some(container)
 }
+
+///|
+fn conver_fail_to_zero(num : Int) -> Int {
+  if num == kmagic_failed_num {
+    0
+  } else {
+    num
+  }
+}

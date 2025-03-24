@@ -28,14 +28,18 @@ pub fn T::to_string(self : T) -> String {
   if self.pre_release.length() > 0 {
     ret_builder.write_char(ksymbol_neg)
     for index, release_part in self.pre_release {
-      if index != 0 { ret_builder.write_char(ksymbol_dot) }
+      if index != 0 {
+        ret_builder.write_char(ksymbol_dot)
+      }
       ret_builder.write_string(release_part)
     }
   }
   if self.build.length() > 0 {
     ret_builder.write_char(ksymbol_pos)
     for index, build_part in self.build {
-      if index != 0 { ret_builder.write_char(ksymbol_dot) }
+      if index != 0 {
+        ret_builder.write_char(ksymbol_dot)
+      }
       ret_builder.write_string(build_part)
     }
   }
@@ -50,8 +54,12 @@ pub fn T::is_pre_release(self : T) -> Bool {
 ///|
 pub impl Eq for T with op_equal(self : T, other : T) -> Bool {
   guard self.major == other.major else { return false }
-  guard self.minor == other.minor else { return false }
-  guard self.patch == other.patch else { return false }
+  guard conver_fail_to_zero(self.minor) == conver_fail_to_zero(other.minor) else {
+    return false
+  }
+  guard conver_fail_to_zero(self.patch) == conver_fail_to_zero(other.patch) else {
+    return false
+  }
   compare_pre_release(self.pre_release, other.pre_release) == kmagic_eq
 }
 

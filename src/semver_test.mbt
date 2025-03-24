@@ -81,6 +81,13 @@ test "compare" {
     pre_release: [],
     build: [],
   }
+  let v2 = @SemVer.T::{
+    major: 2,
+    minor: -1,
+    patch: -1,
+    pre_release: [],
+    build: [],
+  }
   let v2_0_0 = @SemVer.T::{
     major: 2,
     minor: 0,
@@ -120,6 +127,7 @@ test "compare" {
   assert_false!(v2_0_0 == v2_1_0)
   assert_false!(v2_1_0 == v2_1_1)
   assert_false!(v1_0_0 == v1_0_0_release)
+  assert_true!(v2 == v2_0_0)
   assert_true!(v1_0_0 < v2_0_0)
   assert_true!(v2_0_0 < v2_1_0)
   assert_true!(v2_1_0 < v2_1_1)
@@ -155,6 +163,7 @@ test "parse" {
   assert_true!(v_repeat == @SemVer.parse?(right_full_repeat).unwrap())
 }
 
+///|
 test "to_string" {
   let v_simple = @SemVer.T::{
     major: 1,
