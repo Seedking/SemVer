@@ -182,3 +182,22 @@ test "to_string" {
   assert_eq!(v_simple.to_string(), right_simple)
   assert_eq!(v_solo_major.to_string(), right_full_solo_major)
 }
+
+test "is_pre_release" {
+  let v_is_not_release = @SemVer.T::{
+    major: 1,
+    minor: 0,
+    patch: 0,
+    pre_release: [],
+    build: [],
+  }
+  let v_is_release = @SemVer.T::{
+    major: 1,
+    minor: -1,
+    patch: -1,
+    pre_release: ["alpha114", "beta514"],
+    build: ["build1919", "test810"],
+  }
+  assert_false!(v_is_not_release.is_pre_release())
+  assert_true!(v_is_release.is_pre_release())
+}
