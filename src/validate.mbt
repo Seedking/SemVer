@@ -1,6 +1,6 @@
 ///|
 fn check_chars_is_valid(semver : String) -> Bool {
-  not(semver.iter().any(fn(c) { is_valid_char(c) }))
+  semver.iter().any(fn(c) { is_valid_char(c) })
 }
 
 ///|
