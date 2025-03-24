@@ -154,3 +154,22 @@ test "parse" {
   assert_true!(v_full == @SemVer.parse?(right_full).unwrap())
   assert_true!(v_repeat == @SemVer.parse?(right_full_repeat).unwrap())
 }
+
+test "to_string" {
+  let v_simple = @SemVer.T::{
+    major: 1,
+    minor: 0,
+    patch: 0,
+    pre_release: [],
+    build: [],
+  }
+  let v_solo_major = @SemVer.T::{
+    major: 1,
+    minor: -1,
+    patch: -1,
+    pre_release: ["alpha114", "beta514"],
+    build: ["build1919", "test810"],
+  }
+  assert_eq!(v_simple.to_string(), right_simple)
+  assert_eq!(v_solo_major.to_string(), right_full_solo_major)
+}

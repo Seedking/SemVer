@@ -27,15 +27,15 @@ pub fn T::to_string(self : T) -> String {
   }
   if self.pre_release.length() > 0 {
     ret_builder.write_char(ksymbol_neg)
-    for release_part in self.pre_release {
-      ret_builder.write_char(ksymbol_dot)
+    for index, release_part in self.pre_release {
+      if index != 0 { ret_builder.write_char(ksymbol_dot) }
       ret_builder.write_string(release_part)
     }
   }
   if self.build.length() > 0 {
     ret_builder.write_char(ksymbol_pos)
-    for build_part in self.pre_release {
-      ret_builder.write_char(ksymbol_dot)
+    for index, build_part in self.build {
+      if index != 0 { ret_builder.write_char(ksymbol_dot) }
       ret_builder.write_string(build_part)
     }
   }
